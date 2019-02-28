@@ -1,52 +1,53 @@
-# sourcemap-lookup
-A tool for consuming source maps.
+# online-sourcemap-lookup
+A tool for consuming source maps directly from production environments.
 
-Built because we regularly get bug reports in the form of line numbers and column numbers in our compiled and minified react code.
-Since webpack outputs the map files I built this command line tool for taking a path to the map file and the reported line/column number
-and outputs the path to the source file and what line/column it maps to. If it can find the source file, it'll also print out the 
-actual code in that location.
+Built because we regularly get bug reports in the form of line numbers and column numbers in our compiled and minified 
+JavaScript production code. Having source maps on production (preferably hidden from customers) or local allows us to map these 
+stack trace errors to original source code.    
 
 # Usage
 
-Install with `npm install -g sourcemap-lookup`, then run `sourcemap-lookup -h` for detailed usage.
+Install with `npm install -g online-sourcemap-lookup`, then run `online-sourcemap-lookup -h` for detailed usage.
 
 ```
-Usage: 
-	sourcemap-lookup <path/to/map/file>:<line number>:<column number> [options]
+Lookup of production uglified,minified,compressed,... javascript stack trace line and column number and display actual source code location.
 
-Path to map file may include the .map or it will be assumed and added automatically.
+Usage: 
+	online-sourcemap-lookup <http://domain/path/to/js/file.js>:<line number>:<column number> [options]
 
 valid [options]:
-	-h, --help		Show this help message.
-	-v, --version		Show current version.
-	-A		 The number of lines to print after the target line. Default is 5.
-	-B		 The number of lines to print before the target line. Default is 5.
-	-C		 The number of lines to print before and after the target line. If supplied, -A and -B are ignored.
-	-s <sourcepath>, 
-	--source-path=<sourcepath>	Provide a path to the actual source files, this will be used to find the file to use when printing the lines from the source file. Default is ./
+	-h, --help		 Show this help message.
+	-v, --version		 Show current version.
+	-A			 The number of lines to print after the target line. Default is 5.
+	-B			 The number of lines to print before the target line. Default is 5.
+	-C			 The number of lines to print before and after the target line. If supplied, -A and -B are ignored.
+	-s <sourcepath> 	 Provide a path to the actual source files, this will be used to find the file to use when printing the lines from the source file. Default is ./
+	-m <source-map-url> 	 Provide a URL to the actual source maps file, this will be used to lookup source maps. Default is the same as .js URL location. Example: http://domain/path/to/js/source/maps/
 ```
 
 # Example output
 
-Ran the following command: `sourcemap-lookup build/v2.0.19/product.js:24673:19` to get this output:
+Ran the following command: `online-sourcemap-lookup http://localhost:9401/my-site/static/main.1ae303a6f8b6caf24b4e.js:1:683258 -s /project/source/code/path/ -m http://localhost:9401/my-site/static/source-maps` to get this output:
 
 ```
 
+Downloading sourcemap file from http://localhost:9401/my-site/static/source-maps/main.1ae303a6f8b6caf24b4e.js.map
 Original Position: 
-	webpack:///~/react/lib/ReactTransitionGroup.js?bd5c, Line 107:0
+	webpack:///src/webapp/app/my-site/components/map.component.ts, Line 55:10
 
 Code Section: 
-102 |     }
-103 |   },
-104 | 
-105 |   _handleDoneAppearing: function (key) {
-106 |     var component = this.refs[key];
-107 |     if (component.componentDidAppear) {
-108 |       component.componentDidAppear();
-109 |     }
-110 | 
-111 |     delete this.currentlyTransitioningKeys[key];
-112 | 
+50 |     const products$ = zip(
+51 |       this.productsService.products,
+52 |       this.mapLoaded$
+53 |     );
+54 | 
+55>|     throw Error('Im horrible ErRoR!!');
+               ^
+56 | 
+57 |     const userPosition$ = this.mapLoaded$
+58 |       .pipe(
+59 |         switchMap(() => this.userPositionService.getUserPosition())
+60 |       );
 
 
 ```
