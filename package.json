@@ -1,10 +1,11 @@
 {
-  "name": "sourcemap-lookup",
-  "version": "0.0.5",
-  "description": "A command line tool for doing sourcemap lookups.",
+  "name": "online-sourcemap-lookup",
+  "version": "0.0.1",
+  "description": "A command line tool for doing sourcemap lookups from url location.",
   "main": "index.js",
   "keywords": [
-    "sourcemaps"
+    "sourcemaps",
+    "online sourcemaps"
   ],
   "engines": {
     "node": ">=0.10"
@@ -14,9 +15,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kkoch986/sourcemap-lookup"
+    "url": "https://github.com/jgololicic/online-sourcemap-lookup"
   },
-  "author": "Ken Koch <kkoch986@gmail.com>",
+  "author": "Jernej Gololicic <jernej.gololicic@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "colors": "^1.1.2",
