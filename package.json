@@ -1,12 +1,9 @@
 {
-  "name": "online-sourcemap-lookup",
-  "version": "0.0.2",
+  "name": "slookup",
+  "version": "0.1.0",
   "description": "A command line tool for doing sourcemap lookups from url location.",
   "main": "index.js",
-  "keywords": [
-    "sourcemaps",
-    "online sourcemaps"
-  ],
+  "keywords": [],
   "engines": {
     "node": ">=0.10"
   },
@@ -15,9 +12,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jgololicic/online-sourcemap-lookup"
+    "url": "https://github.com/thezion/slookup"
   },
-  "author": "Jernej Gololicic <jernej.gololicic@gmail.com>",
+  "author": "John Long <zlong@redventures.com>",
   "license": "MIT",
   "dependencies": {
     "colors": "^1.1.2",
