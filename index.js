@@ -70,10 +70,10 @@ function pad(str, len) {
     return str;
 }
 
-console.log("");
+console.clear();
 var fs = require("fs");
 var sourceMap = require('source-map');
-var http = require("http");
+var https = require("https");
 
 url = url.split('/');
 var fileName = url.pop();
@@ -83,7 +83,7 @@ var sourceMapsLocation = argv['m'] || url.join('/');
 url = sourceMapsLocation + "/" +fileName;
 
 console.log("Downloading sourcemap file from", url);
-http.get(url, function (response) {
+https.get(url, function (response) {
     var data = '';
 
     if (response.statusMessage !== "OK") {
