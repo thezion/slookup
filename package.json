@@ -1,6 +1,6 @@
 {
   "name": "slookup",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A command line tool for doing sourcemap lookups from url location.",
   "main": "index.js",
   "keywords": [],
@@ -8,7 +8,7 @@
     "node": ">=0.10"
   },
   "bin": {
-    "online-sourcemap-lookup": "index.js"
+    "slookup": "index.js"
   },
   "repository": {
     "type": "git",
@@ -17,8 +17,8 @@
   "author": "John Long <zlong@redventures.com>",
   "license": "MIT",
   "dependencies": {
-    "colors": "^1.1.2",
-    "minimist": "^1.2.0",
-    "source-map": "^0.5.3"
+    "colors": "^1.4.0",
+    "minimist": "^1.2.5",
+    "source-map": "^0.7.3"
   }
 }

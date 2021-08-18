@@ -7,13 +7,14 @@ stack trace errors to original source code.
 
 # Usage
 
-Install with `npm install -g online-sourcemap-lookup`, then run `online-sourcemap-lookup -h` for detailed usage.
+Install with `npm install -g slookup`, then run `slookup -h` for detailed usage.
 
 ```
 Lookup of production uglified,minified,compressed,... javascript stack trace line and column number and display actual source code location.
 
 Usage: 
-	online-sourcemap-lookup <http://domain/path/to/js/file.js>:<line number>:<column number> [options]
+	cd root/path/to/your/project
+	slookup https://yourdomain.com/app.min.js:<line number>:<column number> [options]
 
 valid [options]:
 	-h, --help		 Show this help message.

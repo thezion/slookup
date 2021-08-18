@@ -96,10 +96,10 @@ https.get(url, function (response) {
         data += chunk;
     });
 
-    response.on('end', function () {
+    response.on('end', async function () {
 
         var obj = JSON.parse(data);
-        var smc = new sourceMap.SourceMapConsumer(obj);
+        var smc = await(new sourceMap.SourceMapConsumer(obj));
         var originalPosition = smc.originalPositionFor({
             line: line,
             column: col
@@ -128,6 +128,8 @@ https.get(url, function (response) {
                 }
             });
         }
+
+        smc.destroy();
 
         function showFileContent(content) {
             // Data is a buffer that we need to convert to a string
